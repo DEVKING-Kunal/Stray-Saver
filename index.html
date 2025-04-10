@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animal Rescue Web App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    header {
+      background-color: #0077B6;
+      color: white;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin-left: 1em;
+      text-decoration: none;
+    }
+    .hero {
+      padding: 2em;
+      text-align: center;
+      background-color: #e0f7fa;
+    }
+    .form-section, .dashboard {
+      padding: 2em;
+      margin: 2em;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #0077B6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .incident-card {
+      padding: 1em;
+      margin-top: 1em;
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: #0077B6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rescue App</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#report">Report</a>
+      <a href="#track">Track</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Report Injured or Stray Animals</h2>
+      <button onclick="document.getElementById('reportForm').scrollIntoView();">+ Report New Incident</button>
+    </section>
+
+    <section id="reportForm" class="form-section">
+      <h3>Submit Report</h3>
+      <form action="/submit" method="POST" enctype="multipart/form-data">
+        <label>Upload Animal Image:</label>
+        <input type="file" name="image" required><br>
+
+        <label>Location (Auto-detected):</label>
+        <input type="text" name="location" id="location" readonly><br>
+
+        <label>Severity Level:</label>
+        <input type="range" min="1" max="5" name="severity"><br>
+
+        <label>Type of Injury:</label>
+        <select name="injury">
+          <option>Minor Wound</option>
+          <option>Fracture</option>
+          <option>Bleeding</option>
+          <option>Unconscious</option>
+          <option>Other</option>
+        </select><br>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </section>
+
+    <section class="dashboard">
+      <h3>Nearby Incidents</h3>
+      <div class="incident-card">
+        <h4>Injured Dog</h4>
+        <p>Severity: High</p>
+        <p>Location: 500m away</p>
+        <button>Track Rescue</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Rescue App</p>
+  </footer>
+
+  <script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const coords = `Lat: ${position.coords.latitude}, Lng: ${position.coords.longitude}`;
+      document.getElementById("location").value = coords;
+    });
+  </script>
+</body>
+</html>
