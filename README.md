@@ -54,7 +54,7 @@
 | **Maps & Geolocation** | Mapbox GL JS |
 | **Charts & Analytics** | Recharts |
 | **Backend** | Node.js, Express, MongoDB / Firebase |
-| **Authentication** | Firebase Auth / Auth0 |
+| **Authentication** | Supabase Auth / Auth0 |
 | **Deployment** | Netlify (Frontend), Heroku / AWS (Backend) |
 
 ## ⚙️ Installation & Setup
